@@ -29,9 +29,9 @@ public class CategoryServiceImpl implements CategoryService{
         }
     }
 
-    public Page<Category> queryByName(String query, int page, String field, boolean ascending){
+    public Page<Category> queryByName(String query, int page, int size, String field, boolean ascending){
         Sort.Direction sortDirection = ascending ? Sort.Direction.ASC : Sort.Direction.DESC;
-        return categoryRepository.findByNameContainingIgnoreCase(query, PageRequest.of(page - 1, 10, sortDirection, field));
+        return categoryRepository.findByNameContainingIgnoreCase(query, PageRequest.of(page - 1, size, sortDirection, field));
     }
 
     public Category findByName(String name){

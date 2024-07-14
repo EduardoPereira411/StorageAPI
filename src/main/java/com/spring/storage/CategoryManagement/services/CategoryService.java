@@ -20,5 +20,5 @@ public interface CategoryService {
 
     Category update (long desiredVersion, Long id, EditCategoryRequest editCategoryRequest);
 
-    Page<Category> queryByName(String query, int page, String field, boolean ascending);
+    Page<Category> queryByName(String query, int page,int size, String field, boolean ascending);
 }

@@ -49,10 +49,11 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.OK)
     public Map<String, Object> getCategories(@RequestParam(name = "query", defaultValue = "") @Parameter(description = "query string to search") final String query,
                                              @RequestParam(name = "page", defaultValue = "1") @Parameter(description = "Page number of the elements") final int page,
+                                             @RequestParam(required = false, defaultValue = "10") @Parameter(description = "Number of elements per page") int size,
                                              @RequestParam(name = "sortBy", defaultValue = "catPk") @Parameter(description = "Parameter to sort by") final String sortMethod,
                                              @RequestParam(name = "ascending", defaultValue = "true") @Parameter(description = "Orientation of the sorting (Asc or Desc)") final boolean sortOrientation) {
         Map<String, Object> response = new LinkedHashMap<>();
-        response.put("Categories", categoryViewMapper.toCategoryView(categoryService.queryByName(query,page, sortMethod, sortOrientation)));
+        response.put("Categories", categoryViewMapper.toCategoryView(categoryService.queryByName(query,page,size, sortMethod, sortOrientation)));
         return response;
     }
 
@@ -62,10 +63,11 @@ public class CategoryController {
     public ResponseEntity<CategoryFullView> findById(@PathVariable("id") @Parameter(description = "The id of the category to find") final Long id,
                                                      @RequestParam(name = "query", defaultValue = "") @Parameter(description = "query string to search") final String query,
                                                      @RequestParam(name = "page", defaultValue = "1") @Parameter(description = "Page number of the elements") final int page,
+                                                     @RequestParam(required = false, defaultValue = "10") @Parameter(description = "Number of elements per page") int size,
                                                      @RequestParam(name = "sortBy", defaultValue = "itemPk") @Parameter(description = "Parameter to sort by") final String sortMethod,
                                                      @RequestParam(name = "ascending", defaultValue = "true") @Parameter(description = "Orientation of the sorting (Asc or Desc)") final boolean sortOrientation) {
         final var category = categoryService.findById(id);
-        Page<Item> items = itemService.queryByNameAndCategoryId(query,id, page, sortMethod, sortOrientation);
+        Page<Item> items = itemService.queryByNameAndCategoryId(query,id, page,size, sortMethod, sortOrientation);
         return ResponseEntity
                 .ok()
                 .eTag(Long.toString(category.getVersion()))

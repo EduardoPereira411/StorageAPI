@@ -232,10 +232,11 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     public Map<String, Object> getItems(@RequestParam(name = "query", defaultValue = "") @Parameter(description = "query string to search") final String query,
                                         @RequestParam(name = "page", defaultValue = "1") @Parameter(description = "Page number of the elements") final int page,
+                                        @RequestParam(required = false, defaultValue = "10") @Parameter(description = "Number of elements per page") int size,
                                         @RequestParam(name = "sortBy", defaultValue = "itemPk") @Parameter(description = "Parameter to sort by") final String sortMethod,
                                         @RequestParam(name = "ascending", defaultValue = "true") @Parameter(description = "Orientation of the sorting (Asc or Desc)") final boolean sortOrientation) {
         Map<String, Object> response = new LinkedHashMap<>();
-        response.put("Items", itemViewMapper.toItemView(itemService.queryByName(query,page,sortMethod,sortOrientation)));
+        response.put("Items", itemViewMapper.toItemView(itemService.queryByName(query,page,size,sortMethod,sortOrientation)));
         return response;
     }
 
@@ -244,10 +245,11 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     public Map<String, Object> queryAllFavorites(@RequestParam(name = "query", defaultValue = "") @Parameter(description = "query string to search") final String query,
                                                  @RequestParam(name = "page", defaultValue = "1") @Parameter(description = "Page number of the elements") final int page,
+                                                 @RequestParam(required = false, defaultValue = "10") @Parameter(description = "Number of elements per page") int size,
                                                  @RequestParam(name = "sortBy", defaultValue = "itemPk") @Parameter(description = "Parameter to sort by") final String sortMethod,
                                                  @RequestParam(name = "ascending", defaultValue = "true") @Parameter(description = "Orientation of the sorting (Asc or Desc)") final boolean sortOrientation) {
         Map<String, Object> response = new LinkedHashMap<>();
-        response.put("Items", itemViewMapper.toItemView(itemService.queryByNameAndFavoriteTrue(query,page,sortMethod,sortOrientation)));
+        response.put("Items", itemViewMapper.toItemView(itemService.queryByNameAndFavoriteTrue(query,page,size,sortMethod,sortOrientation)));
         return response;
     }
 
@@ -256,10 +258,11 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     public Map<String, Object> queryOutOfStock(@RequestParam(name = "query", defaultValue = "") @Parameter(description = "query string to search") final String query,
                                                @RequestParam(name = "page", defaultValue = "1") @Parameter(description = "Page number of the elements") final int page,
+                                               @RequestParam(required = false, defaultValue = "10") @Parameter(description = "Number of elements per page") int size,
                                                @RequestParam(name = "sortBy", defaultValue = "itemPk") @Parameter(description = "Parameter to sort by") final String sortMethod,
                                                @RequestParam(name = "ascending", defaultValue = "true") @Parameter(description = "Orientation of the sorting (Asc or Desc)") final boolean sortOrientation) {
         Map<String, Object> response = new LinkedHashMap<>();
-        response.put("Items", itemViewMapper.toItemView(itemService.queryOutOfStock(query,page,sortMethod,sortOrientation)));
+        response.put("Items", itemViewMapper.toItemView(itemService.queryOutOfStock(query,page,size,sortMethod,sortOrientation)));
         return response;
     }
 
@@ -268,10 +271,11 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     public Map<String, Object> queryShoppingList(@RequestParam(name = "query", defaultValue = "") @Parameter(description = "query string to search") final String query,
                                                  @RequestParam(name = "page", defaultValue = "1") @Parameter(description = "Page number of the elements") final int page,
+                                                 @RequestParam(required = false, defaultValue = "10") @Parameter(description = "Number of elements per page") int size,
                                                  @RequestParam(name = "sortBy", defaultValue = "itemPk") @Parameter(description = "Parameter to sort by") final String sortMethod,
                                                  @RequestParam(name = "ascending", defaultValue = "true") @Parameter(description = "Orientation of the sorting (Asc or Desc)") final boolean sortOrientation) {
         Map<String, Object> response = new LinkedHashMap<>();
-        response.put("Items", itemViewMapper.toItemView(itemService.queryShoppingList(query,page,sortMethod,sortOrientation)));
+        response.put("Items", itemViewMapper.toItemView(itemService.queryShoppingList(query,page,size,sortMethod,sortOrientation)));
         return response;
     }
 
@@ -280,10 +284,11 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     public Map<String, Object> queryCheckupList(@RequestParam(name = "query", defaultValue = "") @Parameter(description = "query string to search") final String query,
                                                 @RequestParam(name = "page", defaultValue = "1") @Parameter(description = "Page number of the elements") final int page,
+                                                @RequestParam(required = false, defaultValue = "10") @Parameter(description = "Number of elements per page") int size,
                                                 @RequestParam(name = "sortBy", defaultValue = "itemPk") @Parameter(description = "Parameter to sort by") final String sortMethod,
                                                 @RequestParam(name = "ascending", defaultValue = "true") @Parameter(description = "Orientation of the sorting (Asc or Desc)") final boolean sortOrientation) {
         Map<String, Object> response = new LinkedHashMap<>();
-        response.put("Items", itemViewMapper.toItemView(itemService.queryNeedCheckup(query,page,sortMethod,sortOrientation)));
+        response.put("Items", itemViewMapper.toItemView(itemService.queryNeedCheckup(query,page,size,sortMethod,sortOrientation)));
         return response;
     }
 

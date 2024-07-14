@@ -36,33 +36,33 @@ public class ItemServiceImpl implements ItemService{
         return itemRepository.findAll(PageRequest.of(page - 1, 10, sortDirection, field));
     }
 
-    public Page<Item> queryByName(String query, int page, String field, boolean ascending){
+    public Page<Item> queryByName(String query, int page,int size, String field, boolean ascending){
         Sort.Direction sortDirection = ascending ? Sort.Direction.ASC : Sort.Direction.DESC;
-        return itemRepository.findByNameContainingIgnoreCase(query, PageRequest.of(page - 1, 10, sortDirection, field));
+        return itemRepository.findByNameContainingIgnoreCase(query, PageRequest.of(page - 1, size, sortDirection, field));
     }
 
-    public Page<Item> queryShoppingList(String query,int page, String field, boolean ascending){
+    public Page<Item> queryShoppingList(String query,int page,int size, String field, boolean ascending){
         Sort.Direction sortDirection = ascending ? Sort.Direction.ASC : Sort.Direction.DESC;
-        return itemRepository.findByNameContainingIgnoreCaseAndNeedsShopping(query, PageRequest.of(page - 1, 10, sortDirection, field));
+        return itemRepository.findByNameContainingIgnoreCaseAndNeedsShopping(query, PageRequest.of(page - 1, size, sortDirection, field));
     }
 
-    public Page<Item> queryOutOfStock(String query,int page, String field, boolean ascending){
+    public Page<Item> queryOutOfStock(String query,int page,int size, String field, boolean ascending){
         Sort.Direction sortDirection = ascending ? Sort.Direction.ASC : Sort.Direction.DESC;
-        return itemRepository.findByNameContainingIgnoreCaseAndOutOfStock(query, PageRequest.of(page - 1, 10, sortDirection, field));
+        return itemRepository.findByNameContainingIgnoreCaseAndOutOfStock(query, PageRequest.of(page - 1, size, sortDirection, field));
     }
 
-    public Page<Item> queryNeedCheckup(String query,int page, String field, boolean ascending){
+    public Page<Item> queryNeedCheckup(String query,int page,int size, String field, boolean ascending){
         Sort.Direction sortDirection = ascending ? Sort.Direction.ASC : Sort.Direction.DESC;
-        return itemRepository.findByNameContainingIgnoreCaseAndNeedsCheckup(query, PageRequest.of(page - 1, 10, sortDirection, field));
+        return itemRepository.findByNameContainingIgnoreCaseAndNeedsCheckup(query, PageRequest.of(page - 1, size, sortDirection, field));
     }
-    public Page<Item> queryByNameAndCategoryId(String query,Long id, int page, String field, boolean ascending){
+    public Page<Item> queryByNameAndCategoryId(String query,Long id, int page,int size, String field, boolean ascending){
         Sort.Direction sortDirection = ascending ? Sort.Direction.ASC : Sort.Direction.DESC;
-        return itemRepository.findByNameContainingIgnoreCaseAndCategoryCatPk(query ,id ,PageRequest.of(page - 1, 10, sortDirection, field));
+        return itemRepository.findByNameContainingIgnoreCaseAndCategoryCatPk(query ,id ,PageRequest.of(page - 1, size, sortDirection, field));
     }
 
-    public Page<Item> queryByNameAndFavoriteTrue(String query, int page, String field, boolean ascending){
+    public Page<Item> queryByNameAndFavoriteTrue(String query, int page,int size, String field, boolean ascending){
         Sort.Direction sortDirection = ascending ? Sort.Direction.ASC : Sort.Direction.DESC;
-        return itemRepository.findByNameContainingIgnoreCaseAndFavoriteTrue(query ,PageRequest.of(page - 1, 10, sortDirection, field));
+        return itemRepository.findByNameContainingIgnoreCaseAndFavoriteTrue(query ,PageRequest.of(page - 1, size, sortDirection, field));
     }
 
     public Item findByName(String name){

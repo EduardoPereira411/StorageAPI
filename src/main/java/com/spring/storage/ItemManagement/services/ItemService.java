@@ -19,17 +19,17 @@ public interface ItemService {
 
     Page<Item> findByCategory(Long catId, int page, String field, boolean ascending);
 
-    Page<Item> queryByName(String query, int page, String field, boolean ascending);
+    Page<Item> queryByName(String query, int page,int size, String field, boolean ascending);
 
-    Page<Item> queryShoppingList(String query,int page, String field, boolean ascending);
+    Page<Item> queryShoppingList(String query,int page,int size, String field, boolean ascending);
 
-    Page<Item> queryOutOfStock(String query,int page, String field, boolean ascending);
+    Page<Item> queryOutOfStock(String query,int page,int size, String field, boolean ascending);
 
-    Page<Item> queryNeedCheckup(String query,int page, String field, boolean ascending);
+    Page<Item> queryNeedCheckup(String query,int page,int size, String field, boolean ascending);
 
-    Page<Item> queryByNameAndCategoryId(String query,Long id, int page, String field, boolean ascending);
+    Page<Item> queryByNameAndCategoryId(String query,Long id, int page,int size, String field, boolean ascending);
 
-    Page<Item> queryByNameAndFavoriteTrue(String query, int page, String field, boolean ascending);
+    Page<Item> queryByNameAndFavoriteTrue(String query, int page,int size, String field, boolean ascending);
 
     Item create(CreateItemRequest createItemRequest);
 
