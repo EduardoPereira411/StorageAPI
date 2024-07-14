@@ -29,6 +29,8 @@ public abstract class CategoryViewMapper {
         Page<ItemPartialView> itemPartialViews = mapItemsToItemPartialViews(items);
         categoryView.setItems(itemPartialViews);
 
+        categoryView.setItemCount((int) items.getTotalElements());
+
         return categoryView;
     }
 

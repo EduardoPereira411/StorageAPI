@@ -15,6 +15,8 @@ public class CategoryFullView {
 
     private String description;
 
+    private int itemCount;
+
     private Page<ItemPartialView> items;
 
 }
